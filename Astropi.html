@@ -12,7 +12,7 @@
          <h2> Gruppen: William Røpke, Rasmus Hey, Jens Corneliu, Frederik Lykke, Tjalfe Karoli og Malde Munkholm</h2>
         
     <div id="div4">
-     <img src="billeder/Astropi_logo.jpeg" width="90%" height="auto" class="center">
+     <img src="Billeder/Astropi_logo.jpeg" width="90%" height="auto" class="center">
     <h1> hvad går forløbet Astro Pi ud på?</h1>
     <p> I forløbet om Astro Pi har vi igennem ESA &#40;European Space agency&#41; og deres program MISSION SPACE LAB fået lov til at designe et projekt vi kunne tænke os at lave gennem deres raspberry pi computere instaleret på ISS &#40;internatiol space station&#41; projektet startede med en design og idegenerering. Idegenereringen endte ud i en ansøgning til ESA om udtagelse til at kører projektet gennem de to computere på ISS. Inden da har vi dog, gennem raspberry pi computere skolen har testet og afprøvet vores dataindsamling og data behandling.
          </p>
@@ -21,7 +21,7 @@
    
         <h1> Afslutning</h1>
           <p> som afslutning på hele forløbet er vi blevet stillet disse krav, som resten af denne side vil opfylde</p>
-         <img src="billeder/MP_checklist.jpeg" width="90%" height="auto" class="center">
+         <img src="Billeder/MP_checklist.jpeg" width="90%" height="auto" class="center">
        
     
 <h1> Projektbeskrivelse </h1> 
@@ -31,8 +31,8 @@
          <h1> gennemgang af ESA's specifikationer <br>
          </h1>
          <p>ESA har opsat disse speciffikationer</p>
-         <img src=billeder/Progam_checklist_must.jpeg width="90%" height="auto" class="center">
-         <img src=billeder/Checklist.jpeg width="90%" height="auto" class="center">
+         <img src=Billeder/Progam_checklist_must.jpeg width="90%" height="auto" class="center">
+         <img src=Billeder/Checklist.jpeg width="90%" height="auto" class="center">
          <br>
          <br>
          <p>
@@ -63,16 +63,16 @@
          <p> 
          De første fire linjer af kode (linje 1-6) er til for at importere data som Rasberry-pi enheden indsamler. F.eks. importerer “from sense_hat import SenseHat” den data sense_hat’en indsamler som for eksempel temperatur, tryk og fugtighed. “import subprocess” bliver brugt importerer extensions, hvilket gør så du kan skrive nye koder du ellers ikke ville kunne skrive. I dette tilfælde gør “import subprocess” så en extension fra pakken “gpiozero” bliver integreret. Denne extension er “CPUTemperature sense”, som måler temperaturen af CPU’en, der så ved hjælp af “CPUTemperature sense = SenseHat()” tilføjer dataen til resten af dataene fra sense_hat’en.
            <br>
-             <img src="billeder/Biblotek_import.jpeg" width="90%" height="auto" class="center">
+             <img src="Billeder/Biblotek_import.jpeg" width="90%" height="auto" class="center">
             <br> 
-         De næste tre linjer kode (linje 9-11) beskriver tiden, hvor forsøget starter “Start_time = datetime.datetime.now()”, hvor den noterer hvilket tidspunkt på dagen forsøget starter på ved hjælp af “datetime.datetime.now()”. “now_time = datetime.datetime.now()” er til for at man senere i koden, ved hjælp af et while statement (linje 14), kan stoppe forsøget når “duration” er lig med 0. “duration = datetime.timedelta(seconds=600)” bliver brugt til at styre forsøgets varighed i linje 14.
+         De næste tre linjer kode (linje 9-11) beskriver tiden, hvor forsøget starter “Start_time = datetime.datetime.now()”, hvor den noterer hvilket tidspunkt på dagen forsøget starter på ved hjælp af “datetime.datetime.now()”. “now_time = datetime.datetime.now()” er til for at man senere i koden, ved hjælp af et while statement (linje 14), kan stoppe forsøget når “duration” er lig med 0. “duration = datetime.timedelta(seconds=10)” bliver brugt til at styre forsøgets varighed i linje 14 (10 er et eksempel, men vi brugte 60 i vores testmåling altså 1 minut).
           <br>
-             <img src=billeder/tidstagning.jpeg width="90%" height="auto" class="center">
+             <img src=Billeder/tidstagning.jpeg width="90%" height="auto" class="center">
              <br>
         
          Linje 17-22 gør brug af en “while true” kommando, som fortæller programmet at mens “now_time” har en lavere værdi end “start_time” plus “duration”, så skal Astro-pi enheden indsamle data for “temperatur”, “tryk” og “fugtighed”. Dette fungerer på den måde at duration formindskes til at den rammer værdien 0, hvilket gør så “now_time &gt; start_time + duration” ikke længere er sandt, som så gør at Astro-pi’en ikke længere indsamler data. “now_time = datetime.datetime.now()” bliver opdateret efter dataen er indsamlet.
     <br>
-             <img src=billeder/Data_opsamling.jpeg width="90%" height="auto" class="center">
+             <img src=Billeder/Data_opsamling.jpeg width="90%" height="auto" class="center">
              <br>
              Linje 47-54 giver programmet kravene: hvis fugtigheden og temperaturen for en plante er over minimum-værdien og under maximum-værdien, så printes plantens navn for at vise, at planten kan leve på stationen.
              <br>
