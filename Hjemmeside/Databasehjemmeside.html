@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.0/papaparse.min.js"></script>
+  <meta charset="UTF-8">
+  <title>Databasehjemmeside</title>
+  <link rel=stylesheet href=Database.css>
+  
+<body>
+<div class="hele">
+  <div class="nav">
+    <a href="index.html"><img src="billeder/Hjem.png"width="50px"height="50px"></a>
+    <a href="Hjemmeside2.html">Webteknologier</a>
+    <a href="ITsikkerhed.html">It-sikkerhed</a>
+    <a href="Astropi.html">Astro-Pi</a>
+    <a href="Spil.html">Spil, leg og samarbejde</a>
+    <a href="Databasehjemmeside.html">Databaser</a>
+      </div>
+  <div class="bredde">
+  
+    <div class="højde">
+    
+<h1>Fag på Rysensteen Gymnasium</h1>
+<div class="boksBeskrivelse">
+<h3>Hvad kan man på denne side?</h3>
+<h4>På Rysensteen er der mange fag, mange muligheder. Det hele kan let virke uoverskueligt, især når fagene ofte lader til at komme i bunker som f.eks. science med matematik og sprog med samfundsfag. For at gøre livet simpelt, skal du her kun tage stilling til et enkelt fag ad gangen. Enten kan du lide det, det kan være, at det ikke lige er dig eller måske er du ikke sikker; så trykker du bare "Nyt fag". Til hvert fag er der information om faget fra skolens hjemmeside og en kort kommentar fra vores side af. Men husk, det handler om, hvad der lyder mest spændende. </h4>
+<h4>Gruppe: Frederik Lykke, Rasmus og William</h4>
+<h4>Link til hvad vi har været igennem i forløbet "Databaser" og lidt om vores side:
+  <a href="DatabaseUnderside.html">Databaser-underside</a>
+</h4>
+</div>
+<button type="button" class="knapper" id="knap1" onclick="ny()">Nyt fag</button>
+<button type="button" class="knapper" onclick="valgte()">Lyder som noget for mig</button>
+<button type="button" class="knapper" onclick="ikkeValgte()">Ikke noget for mig</button>
+<button type="button" class="knapper" onclick="holdning()">Vores holdning</button>
+<div class="NogetForMig">
+  <h5>Fag du synes om:</h5>
+  <h6 id="valg"></h6>
+  <h5>Fag som ikke er dig:</h5>
+  <h6 id="ikkevalg"></h6>
+  </div>
+</div>
+
+<div class="højde">
+<h2 id="fag"></h2>
+<img id="myImage" src="https://github.com/FrederikLR/Portfolio/blob/main/Billeder%20database/Rys.jpg?raw=true" style="width:500px; height:400px">
+<p id="beskrivelse"></p>
+<p id="rating"></p>
+
+
+
+</div>
+</div>
+</div>
+</body>
+</html>
+
+<script>
+  let x;
+  let FN;
+  let listeMedValgte = [];
+  let listeMedIkkeValgte = [];
+  let data;
+  var fag = null
+  var beskrivelse = null
+  var rating = null
+  var t = 0
+
+function ny() {
+  x = givenList[t]
+  t++ 
+  genererTekst(x);
+  pic = "https://github.com/FrederikLR/Portfolio/blob/main/Billeder%20database/fag"+x+".jpg?raw=true"  
+  document.getElementById('fag').innerHTML = fag;
+  document.getElementById('beskrivelse').innerHTML = beskrivelse;
+  document.getElementById('rating').innerHTML = "";
+  document.getElementById('myImage').src = pic;
+}
+function holdning(){
+  document.getElementById('rating').innerHTML = rating;
+}
+
+function valgte(){
+  listeMedValgte.push(fag)
+  document.getElementById('valg').innerHTML = listeMedValgte;
+
+  x = givenList[t]
+  t++
+  genererTekst(x);
+  pic = "https://github.com/FrederikLR/Portfolio/blob/main/Billeder%20database/fag"+x+".jpg?raw=true"  
+  document.getElementById('fag').innerHTML = fag;
+  document.getElementById('beskrivelse').innerHTML = beskrivelse;
+  document.getElementById('rating').innerHTML = "";
+  document.getElementById('myImage').src = pic;
+}
+function ikkeValgte(){
+  listeMedIkkeValgte.push(fag)
+  document.getElementById('ikkevalg').innerHTML = listeMedIkkeValgte;
+  
+  x = givenList[t]
+  t++
+  genererTekst(x);
+  pic = "https://github.com/FrederikLR/Portfolio/blob/main/Billeder%20database/fag"+x+".jpg?raw=true"  
+  document.getElementById('fag').innerHTML = fag;
+  document.getElementById('beskrivelse').innerHTML = beskrivelse;
+  document.getElementById('rating').innerHTML = "";
+  document.getElementById('myImage').src = pic;
+}
+
+
+function genererTekst(x){
+  for (var i = 0; i < data.length; i++) {
+      if (data[i]["ID"] == x) {
+        fag = data[i]['fag']; 
+        beskrivelse = data[i]['beskrivelse'];
+        rating = data[i]['rating'];
+        break;
+      }
+    }
+}
+window.onload = function() {
+  givenList = [1,2,3,4,5,6,7,8];
+  givenList.sort(()=>Math.random()-0.5)
+var xhr = new XMLHttpRequest();
+xhr.open("GET", "DatabasehjemmesideCSV.csv", true);
+xhr.responseType = "text";
+xhr.onload = function() {
+  data = Papa.parse(xhr.responseText, {
+    header: true // set this to true if the first row contains the header names
+  }).data;
+};
+xhr.send();
+}
+</script>

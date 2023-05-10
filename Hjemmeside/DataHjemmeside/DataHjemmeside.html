@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.0/papaparse.min.js"></script>
+
+<body>
+<h1>Vælg tilfældigt FN mål</h1>
+<p id="overskrift"></p>
+<p id="progression"></p>
+<img id="myImage" src="https://github.com/mpsteenstrup/GCP4/blob/master/FN_maal/samlet.jpg?raw=true" style="width: 50%;">
+<p id="beskrivelse"></p>
+<button type="button" onclick="ny()">ny</button>
+<button type="button" onclick="valgte()">vælg</button>
+<p id="valg"></p>
+
+
+</body>
+</html>
+
+<script>
+  let x;
+  let FN;
+  let listeMedValgte = [];
+  let givenList = [];
+  let data;
+  var overskrift = null
+  var beskrivelse = null
+  var progression = null
+  var p = null
+  var n = 4
+  var t = 0
+
+
+    function ny() {
+      x = givenList[t]
+      t++
+    
+            var pic;
+  console.log();
+  genererTekst(x);
+  pic = "https://github.com/mpsteenstrup/GCP4/blob/master/FN_maal/FN"+x+".jpg?raw=true"  
+  document.getElementById('overskrift').innerHTML = overskrift;
+  document.getElementById('beskrivelse').innerHTML = beskrivelse;
+  document.getElementById('progression').innerHTML = progression;
+  document.getElementById('myImage').src = pic;
+}
+
+function valgte(){
+  console.log(x);
+  console.log(FN);
+  listeMedValgte.push(overskrift)
+  document.getElementById('valg').innerHTML = listeMedValgte;
+}
+
+
+
+function genererTekst(x){
+  for (var i = 0; i < data.length; i++) {
+      if (data[i]["ID"] == x) {
+        overskrift = data[i]['overskrift']; 
+        beskrivelse = data[i]['beskrivelse'];
+        if (p<n) {
+            p = p+1;
+        progression = (p/n*100) + '%';
+        }
+        break; // exit efter loop
+      }
+    }
+}
+window.onload = function() {
+  givenList = [1,2,3,4];
+  givenList.sort(() => Math.random() - 0.5)
+var xhr = new XMLHttpRequest();
+xhr.open("GET", "FN.csv", true);
+xhr.responseType = "text";
+xhr.onload = function() {
+  data = Papa.parse(xhr.responseText, {
+    header: true // set this to true if the first row contains the header names
+  }).data;
+};
+xhr.send();
+}
+</script>

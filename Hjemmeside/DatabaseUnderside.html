@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+    <title>Database-forløb og teori</title>
+    <link rel=stylesheet href=DatabaseUnderside.css>
+    
+</head>
+
+    <body>
+            <div class="nav">
+                <a href="index.html"><img src="billeder/Hjem.png"width="50px"height="50px"></a>
+                  <a href="Hjemmeside2.html">Webteknologier</a>
+                  <a href="ITsikkerhed.html">It-sikkerhed</a>
+                  <a href="Astropi.html">Astro-Pi</a>
+                  <a href="Spil.html">Spil, leg og samarbejde</a>
+                  <a href="Databasehjemmeside.html">Databaser</a>
+                  </div>
+
+<h1>Database- teori</h1>
+<h3>I foråret 2023 har vi bæskifteget os med forløbet Databaser. Som produkt fik vi udviklet hjemmesiden du så indenda. Vi har ikke kun brugt tiden på det. Her er et par teoriafsnit om, hvad vi har været igennem i forløbet. Til slut er lidt om vores program.</h3>
+
+<h2>Hvad er en database?</h2>
+<h3>En database er data samlet et sted på en måde, hvis formål er, at holde de mange data overskuelige. Med en database skal det også være muligt finde data hurtigt og let.</h3>
+
+<div class="bredde">
+<div class="højde">
+<h5>Normalisering - hvad er det, og hvonår er en database normaliseret?</h5>
+<h3>Normalisering af en database har det formål at gøre det lettere at søge efter data i databasen. For at en database skal være normaliseret, så skal der være ingen gentagelser i primærnøglen. En primærnøgle er en kolonne i regnearket, som "ejer" de andre kolonner, de andre tilhører altså primærnøglen. Dette kan f.eks. ses i den normaliserede database nedenfor. Derudover må ingen kolonner afhænge af andre end primærnøglen. For at opnå normalisering er det ofte nødvendigt at opdele data i forskellige regneark. Dertil bruges en sekundær nøgle, hvis formål er at referere tilbage til et andet regneark. Dette ses ved tilføgelsen af "BilerID" i den normaliserede database nedenfor, hvor kundeID agerer som sekundær nøgle.</h3>
+</div>
+<div class="højde">
+<h3>Eksempel på database som ikke er normaliseret:</h3>
+<img id="billedernormal"src="Billeder database/DatabaseIkkeNormaliseret.png"width="610px"height="120px">
+<h4>Samme database, men nu normaliseret:</h4>
+<img id="billedernormal"src="Billeder database/DatabaseNormaliseret.png"width="350px"height="150px">
+</div>
+</div>
+
+<div class="bredde">
+<div class="højde">
+    <img src="Billeder database/E-R Diagram.png"width="600px">
+</div>
+<div class="højde">
+<h2>E/R diagrammer:</h2>
+<h6>Til venstre ses et eksempel på et E/R diagram for den normaliserede database ovenfor</h6>
+<h3>Et E/R diagram har til formåle at visualisere relationen mellem primærnøgler. I nedenstående ses at en kunde kan eje mange biler, og en bil kan kun ejes af en kunde. Dette bliver dog hurtigt mere kompliceret hvis relationen er "mange ejer mange", f.eks. at mange kan eje en bil og de have flere biler. Dertil ville der skulle oprettes et tredje regneark, for at holde styr på relationerne mellem ejer og det som ejes.</h3>
+</div>
+</div>
+<div class="bredde">
+<div class="højde">
+<h2>Vores program:</h2>
+<h3>Vi må først og fremmest indrømme, at vi ikke lige havde fanget, at der skulle laves en form for quiz/flashcards. Vi troede, at det primære var at lave en side med tre-lags-arkitektur. Vi har lavet en prototype til en side, som har målgruppen "nye studerende på Rysensteen Gymnasium". Sidens formål er at gøre det mere overskueligt for de nye, at få et indblik i de forskellige fag uden selv at skulle kigge alle mulige steder dybt inde på skolen side. Ved at få kastet tilfældige fag i hovedet, sikres at eleven ikke blot læser om de fag, som han/hun i forvejen ved at de kan lide. 
+<br>Det kan ofte virke kedeligt og fjernt, når man bare læser skolens knap-så-spændende tekster til hvert fag. Vi har derfor tilføjet en kommentar af egen til fagene. Ja, måske har vi lidt af et bias, men vi har prøvet at holde kommentarene noglelunde neutrale og objektive.
+<br>Kort sagt er siden bygget op af en facade/præsentationslag, som er det man ser på siden, et logiklag: et javascript som forbinder knapperne med en funktion og til sidst et datalag: en csv-fil, som er, hvor vi opbevarer beskrivelser og kommentarer til fag.
+</h3>
+</div>
+<div class="højde">
+    <img id="billedehjørner" src="Billeder database/Hjemmeside.png"width="600px">
+</div>
+</div>
+<h2>Hvordan fungerer de forskellige knapper?</h2>
+
+<div class="bredde">
+<div class="højde">
+<h2>"Nyt fag" og "Vores holdning":</h2>
+<h3>Koden som får netop disse to knapper til at virke ses til højre. Lad os starte med den nemme, "Vores holdning", når der trykkes på den hentes "rating" inde fra vores csv-fil, og ved innerHTML=rating bliver holdningen skrevet.
+<br> Det bliver lige straks lidt værre med "Nyt fag". Her hentes igen de forskellige elementer på samme måde fra vores csv-fil, imens billederne kommer fra en mappe på github hvor de alle har fået samme navn efterfulgt af et tal, som stemmer overens med primærnøglen i csv-filen. Den øverste del, er for at fagene ikke ender med at gentage sig selv. x tildeles listen "givenlist[t]". ved t++ lægges en til listen for hver gang der trykkes på knappen, så der ikke bliver fundet det samme element i listen to gange. Da vi gerne vil have slettet "Vores holdning" ved et nyt fag, skrives der blot intet ift "rating".
+</h3>
+</div>
+<div class="højde">
+    <img id="billedehjørner" src="Billeder database/KodeKnapNyOgHoldning.png"width="600px">
+</div>
+</div>
+<div class="bredde">
+    <div class="højde">
+ <img id="billedehjørner" src="Billeder database/KodeValgte.png"width="600px">   
+ </div>
+ <div class="højde">
+<h2>For og imod knapperne:</h2>
+<h3>Disse to knapper er næsten identiske, hvorfor vi nøjes med at vise koden for den ene. Koden til "lyder som noget for mig" knappen har ligesom "Nyt fag" knappen de linjer som henter elementer til næste fag. Det som er anderledes er de to øverste linjer, hvor et fag bliver sendt til "ListeMedValgte" i det der trykkes på knappen. For at kun navnet på faget ryger med, sættes navnet på kolonnen med fagenes navne fra csv-filen ind i første linje. For at kunne se fagene, som man (ikke) kan lide, refereres tilbage til id'et "valg" oppe i HTML-delen.</h3>
+ </div>
+ </div>
+ <div class="bredde">
+<div class="højde">
+<h2>"GenererTekst"-delen</h2>   
+<h3>Denne del er meget vigtig. Det er nemlig denne del, som sørger for at der ikke lige pludselig står en anmeldelse af f.eks. idræt når man vil have den for matematik.Til at starte med har i en værdi på 0, og passer derfor til ingen af de primærnøgler vi har liggende i vores csv-fil, når der så trykkes på en af de tidligere nævnte knapper, så ændres i's værdi og denne del tjekker for hvilken primærnøgle som nu passer til i's værdi. Hvis i passer sammen med en primærnøgle"ID", ved programmet nu, at det skal tage navnet, beskrivelse og holdningen som tillægger sig primærnøglen.</h3> 
+</div>
+<div class="højde">
+    <img id="billedehjørner" src="Billeder database/generertekst.png"width="600px"> 
+</div>
+ </div>
+ <div class="bredde">
+    <div class="højde">
+ <img id="billedehjørner" src="Billeder database/Databaseconnect.png"width="600px">   
+ </div>
+ <div class="højde">
+<h2>Hvordan sættes databasen op med præsentations- og logiklaget?</h2>
+<h3>Når siden loades, sættes denne del i gang. Først har vi vores liste med det antal primærnøgler, som vi har i databasen. Vi ville gerne have, at rækkefølgen fagene kommer i er tilfældig, hvilket Math.random står for. Dernæst åbnes vores csv-fil og får at det skal logiklaget skal forstå, hvordan det skal læse databasen bruges biblioteket "Papaparse". Vi vil gerne fortælle programmet, at den første række i csv-filen er vores header, hvorfor den er sat til true.</h3>
+ </div>
+ </div>
+ <h2>Vores database:</h2>
+ <div class="bredde">
+    <div class="højde">
+ <img id="billedehjørner" src="Billeder database/voresdatabase.png"width="600px">   
+ </div>
+ <div class="højde">
+<h3>Vores database er ret simpel, da vi ingen gentagelser har, og derfor ingen sekundære nøgler har. Vores entiteter har vi i kolonne nr. 2: de forskellige fag. Som attributter har vi vores forskellige beskrivelser og holdninger, som giver information om de forskellige entiteter. For at indikere en ny kolonne i vores csv-fil, benytter vi os af kommaer. For at dette ikke skaber udfordringer, når vi gerne vil skrive en beskrivelse til et fag med kommaer i, sættes beskrivelserne og "ratings" i anførelsestegn. Vores database er normaliseret da den har en unik primærnøgle, ingen kolonner afhænger af andre end primærnøglen, der er kun én slags datatype i hver kolonne, der er ingen gentagelser/redundans og til sidst er vores data relateret til hinanden. </h3>
+ </div>
+
+
+    </body>
+   
+    
+    
+</html>
